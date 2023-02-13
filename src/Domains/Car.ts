@@ -1,50 +1,47 @@
-export default class Car {
-  protected _id?: string | undefined;
-  protected _model: string;
-  protected _year: number;
-  protected _color: string;
-  protected _status?: boolean = false;
-  protected _buyValue: number;
-  private _doorsQty = 0;
-  private _seatsQty = 0;
+import ICar from '../Interfaces/ICar';
 
-  constructor(
-    id: string | undefined,
-    model: string,
-    year: number,
-    color: string,
-    status: boolean,
-    buyValue: number,
-  ) {
-    this._id = id;
-    this._model = model;
-    this._year = year;
-    this._color = color;
-    this._status = status;
-    this._buyValue = buyValue;
+export default class Car {
+  protected id: string | undefined;
+  protected model: string;
+  protected year: number;
+  protected color: string;
+  protected status: boolean | undefined;
+  protected buyValue: number;
+  private doorsQty: number;
+  private seatsQty: number;
+
+  constructor(newCar: ICar) {
+    this.id = newCar.id;
+    this.model = newCar.model;
+    this.year = newCar.year;
+    this.color = newCar.color;
+    this.status = newCar.status;
+    this.buyValue = newCar.buyValue;
+    this.doorsQty = newCar.doorsQty;
+    this.seatsQty = newCar.seatsQty;
   }
 
-  public getId() { return this._id; }
-  public setId(newId: string) { this._id = newId; }
+  public getId() { return this.id; }
+  public setId(newId: string) { this.id = newId; }
 
-  public getModel() { return this._model; }
-  public setModel(newModel: string) { this._model = newModel; }
+  public getModel() { return this.model; }
+  public setModel(newModel: string) { this.model = newModel; }
 
-  public getYear() { return this._year; }
-  public setYear(newYear: number) { this._year = newYear; }
+  public getYear() { return this.year; }
+  public setYear(newYear: number) { this.year = newYear; }
 
-  public getColor() { return this._color; }
-  public setColor(newColor: string) { this._color = newColor; }
+  public getColor() { return this.color; }
+  public setColor(newColor: string) { this.color = newColor; }
 
-  public getStatus() { return this._status; }
-  public setStatus(newStatus: boolean) { this._status = newStatus; }
+  public getStatus() { return this.status; }
+  public setStatus(newStatus: boolean) { this.status = newStatus; }
 
-  public getBuyValue() { return this._buyValue; }
-  public setBuyValue(newValue: number) { this._buyValue = newValue; }
+  public getBuyValue() { return this.buyValue; }
+  public setBuyValue(newValue: number) { this.buyValue = newValue; }
 
-  public getDoorsQty() { return this._doorsQty; }
-  public setDoorsQty(newQty: number) { this._doorsQty = newQty; }
+  public getDoorsQty() { return this.doorsQty; }
+  public setDoorsQty(newQty: number) { this.doorsQty = newQty; }
 
-  public getSeatsQty() { return this._seatsQty; }
-  public setSeatsQty(newQty: number) { this._seatsQty = newQty; }
+  public getSeatsQty() { return this.seatsQty; }
+  public setSeatsQty(newQty: number) { this.seatsQty = newQty; }
 }
