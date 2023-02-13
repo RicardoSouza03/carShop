@@ -32,4 +32,13 @@ export default class CarService {
 
     return this.createCar(foundCar);
   }
+
+  public async updateById(id: string, newInfo: ICar) {
+    this.carValidations.validateCarId(id);
+
+    await this.carODM.updateById(id, newInfo);
+    const updatedCar = await this.getById(id);
+
+    return updatedCar;
+  }
 }
