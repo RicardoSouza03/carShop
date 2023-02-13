@@ -3,30 +3,30 @@ import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 
 export default class CarController {
-  private _req: Request;
-  private _res: Response;
-  private _next: NextFunction;
-  private _service: CarService;
+  private req: Request;
+  private res: Response;
+  private next: NextFunction;
+  private service: CarService;
 
   constructor(req: Request, res: Response, next: NextFunction) {
-    this._req = req;
-    this._res = res;
-    this._next = next;
-    this._service = new CarService();
+    this.req = req;
+    this.res = res;
+    this.next = next;
+    this.service = new CarService();
   }
 
   public async create(): Promise<Response> {
     const newCar: ICar = {
-      model: this._req.body.model,
-      color: this._req.body.color,
-      year: this._req.body.year,
-      status: this._req.body.status,
-      buyValue: this._req.body.buyValue,
-      doorsQty: this._req.body.doorsQty,
-      seatsQty: this._req.body.seatsQty,
+      model: this.req.body.model,
+      color: this.req.body.color,
+      year: this.req.body.year,
+      status: this.req.body.status || false,
+      buyValue: this.req.body.buyValue,
+      doorsQty: this.req.body.doorsQty,
+      seatsQty: this.req.body.seatsQty,
     };
 
-    const createdCar = await this._service.registerCar(newCar);
-    return this._res.status(200).json(createdCar);
+    const createdCar = await this.service.registerCar(newCar);
+    return this.res.status(201).json(createdCar);
   }
 }
