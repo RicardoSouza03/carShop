@@ -9,6 +9,11 @@ carRoute.post(
 );
 
 carRoute.get(
+  '/:id',
+  (req, res, next) => new CarController(req, res, next).getById(),
+);
+
+carRoute.get(
   '/',
   (req, res, next) => new CarController(req, res, next).getAll(),
 );
