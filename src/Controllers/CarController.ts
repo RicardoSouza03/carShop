@@ -29,4 +29,9 @@ export default class CarController {
     const createdCar = await this.service.registerCar(newCar);
     return this.res.status(201).json(createdCar);
   }
+
+  public async getAll(): Promise<Response> {
+    const allCars = await this.service.getAll();
+    return this.res.status(200).json(allCars);
+  }
 }
