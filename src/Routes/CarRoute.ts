@@ -3,6 +3,11 @@ import CarController from '../Controllers/CarController';
 
 const carRoute = Router();
 
+carRoute.put(
+  '/:id',
+  (req, res, next) => new CarController(req, res, next).updateById(),
+);
+
 carRoute.post(
   '/',
   (req, res, next) => new CarController(req, res, next).create(),
