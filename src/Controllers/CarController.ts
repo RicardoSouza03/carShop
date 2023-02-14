@@ -62,4 +62,15 @@ export default class CarController extends AbstractController {
       this.next(error);
     }
   }
+
+  public async deleteById() {
+    const { id } = this.req.params;
+
+    try {
+      await this.service.deleteById(id);
+      return this.res.status(200).json({});
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
