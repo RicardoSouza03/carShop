@@ -2,7 +2,7 @@ import { Schema, UpdateWriteOpResult } from 'mongoose';
 import IMotorycle from '../Interfaces/IMotorcycle';
 import AbstractODM from './AbstractODM';
 
-export default class CarODM extends AbstractODM<IMotorycle> {
+export default class MotorcycleODM extends AbstractODM<IMotorycle> {
   constructor() {
     const schema = new Schema<IMotorycle>({
       model: { type: String, required: true },
