@@ -16,10 +16,6 @@ export default class CarODM extends AbstractODM<ICar> {
     super(schema, 'cars');
   }
 
-  public async getById(id: string): Promise<ICar | null> {
-    return this.model.findById(id);
-  }
-
   public async updateById(id: string, obj: ICar): Promise<UpdateWriteOpResult> {
     return this.model.updateOne({ _id: id }, { $set: { ...obj } });
   }
