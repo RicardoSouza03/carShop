@@ -22,7 +22,7 @@ export default class CarController extends AbstractController {
       seatsQty: this.req.body.seatsQty,
     };
 
-    const createdCar = await this.service.registerCar(newCar);
+    const createdCar = await this.service.registerVehicle(newCar);
     return this.res.status(201).json(createdCar);
   }
 

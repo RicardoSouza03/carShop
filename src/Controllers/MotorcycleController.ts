@@ -22,7 +22,7 @@ export default class MotorcycleController extends AbstractController {
       engineCapacity: this.req.body.engineCapacity,
     };
 
-    const createdMotorcycle = await this.service.registerMotorcycle(newMotorcycle);
+    const createdMotorcycle = await this.service.registerVehicle(newMotorcycle);
     return this.res.status(201).json(createdMotorcycle);
   }
 
