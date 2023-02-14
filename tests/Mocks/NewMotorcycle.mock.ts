@@ -1,6 +1,5 @@
 import Motorcycle from '../../src/Domains/Motorcycle';
 import IMotorycle from '../../src/Interfaces/IMotorcycle';
-import EnumCategory from '../../src/Utils/EnumCategory';
 
 const motorcycleInput: IMotorycle = {
   model: 'Honda Cb 600f Hornet',
@@ -8,7 +7,7 @@ const motorcycleInput: IMotorycle = {
   color: 'Yellow',
   status: true,
   buyValue: 30.000,
-  category: EnumCategory.Street,
+  category: 'Street',
   engineCapacity: 600,
 };
 
@@ -19,7 +18,7 @@ const motorcycleOutPut: Motorcycle = new Motorcycle({
   color: 'Yellow',
   status: true,
   buyValue: 30.000,
-  category: EnumCategory.Street,
+  category: 'Street',
   engineCapacity: 600,
 });
 
