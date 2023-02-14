@@ -3,7 +3,7 @@ import IMotorycle from '../Interfaces/IMotorcycle';
 import MotorcycleService from '../Services/MotorcycleService';
 import AbstractController from './AbstractController';
 
-export default class CarController extends AbstractController {
+export default class MotorcycleController extends AbstractController {
   private service: MotorcycleService;
 
   constructor(req: Request, res: Response, next: NextFunction) {
