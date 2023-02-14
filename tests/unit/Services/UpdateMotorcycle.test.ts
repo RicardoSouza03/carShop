@@ -32,7 +32,7 @@ describe('Testes para atualizar informações de uma moto', function () {
   });
   
   it('Espera que seja possivel atualizar com sucesso informações de uma moto', async function () {
-    sinon.stub(Model, 'updateOne').resolves();
+    sinon.stub(Model, 'findByIdAndUpdate').resolves();
     sinon.stub(Model, 'findById').resolves(motorcycleOutPut);
 
     const service = new MotorcycleService();
