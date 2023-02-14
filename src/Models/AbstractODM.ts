@@ -1,4 +1,4 @@
-import { model, Model, models, Schema } from 'mongoose';
+import { model, Model, models, Schema, UpdateQuery } from 'mongoose';
 
 export default abstract class AbstractODM<T> {
   protected model: Model<T>;
@@ -25,5 +25,9 @@ export default abstract class AbstractODM<T> {
   
   public async delete(id: string): Promise<void> {
     this.model.deleteOne({ _id: id });
+  }
+
+  public async updateById(id: string, obj: T): Promise<T | null> {
+    return this.model.findByIdAndUpdate({ _id: id }, { ...obj } as UpdateQuery<T>);
   }
 }
