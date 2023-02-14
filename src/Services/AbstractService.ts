@@ -1,15 +1,15 @@
 import AbstractODM from '../Models/AbstractODM';
 import CarODM from '../Models/CarODM';
-import CarValidate from '../Utils/Validations/VehicleValidations';
+import VehicleValidate from '../Utils/Validations/VehicleValidations';
 
 export default abstract class AbstractService<Interface, Model> {
   private vehicleODM: AbstractODM<Interface>;
-  private vehicleValidation: CarValidate<Interface>;
+  private vehicleValidation: VehicleValidate<Interface>;
   private vehicleType: string;
 
   constructor(ODM: AbstractODM<Interface>) {
     this.vehicleODM = ODM;
-    this.vehicleValidation = new CarValidate();
+    this.vehicleValidation = new VehicleValidate();
     this.vehicleType = this.assertVehicleType();
   }
 
