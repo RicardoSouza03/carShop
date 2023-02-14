@@ -41,4 +41,13 @@ export default class CarService {
 
     return updatedCar;
   }
+
+  public async deleteById(id: string): Promise<void> {
+    this.carValidations.validateCarId(id);
+
+    const foundMotorcycle = await this.carODM.getById(id);
+    this.carValidations.checkCarExistence(foundMotorcycle);
+
+    await this.carODM.delete(id);
+  }
 }
