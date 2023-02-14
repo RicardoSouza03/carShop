@@ -1,76 +1,26 @@
 import { NextFunction, Request, Response } from 'express';
+import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
 import AbstractController from './AbstractController';
 
-export default class CarController extends AbstractController {
-  private service: CarService;
-
+class CarController extends AbstractController<ICar, Car> {
   constructor(req: Request, res: Response, next: NextFunction) {
-    super(req, res, next);
-    this.service = new CarService();
+    const service = new CarService();
+    super(req, res, next, service);
   }
 
-  public async create(): Promise<Response> {
-    const newCar: ICar = {
-      model: this.req.body.model,
-      color: this.req.body.color,
-      year: this.req.body.year,
-      status: this.req.body.status || false,
-      buyValue: this.req.body.buyValue,
-      doorsQty: this.req.body.doorsQty,
-      seatsQty: this.req.body.seatsQty,
+  createVehicle(vehicle: any): ICar {
+    return {
+      model: vehicle.model,
+      color: vehicle.color,
+      year: vehicle.year,
+      status: vehicle.status || false,
+      buyValue: vehicle.buyValue,
+      doorsQty: vehicle.doorsQty,
+      seatsQty: vehicle.seatsQty,
     };
-
-    const createdCar = await this.service.registerVehicle(newCar);
-    return this.res.status(201).json(createdCar);
-  }
-
-  public async getAll(): Promise<Response> {
-    const allCars = await this.service.getAll();
-    return this.res.status(200).json(allCars);
-  }
-
-  public async getById() {
-    const { id } = this.req.params;
-
-    try {
-      const allCars = await this.service.getById(id);
-      return this.res.status(200).json(allCars);
-    } catch (error) {
-      this.next(error);
-    }
-  }
-
-  public async updateById() {
-    const { id } = this.req.params;
-
-    const carToUpdate: ICar = {
-      model: this.req.body.model,
-      color: this.req.body.color,
-      year: this.req.body.year,
-      status: this.req.body.status || false,
-      buyValue: this.req.body.buyValue,
-      doorsQty: this.req.body.doorsQty,
-      seatsQty: this.req.body.seatsQty,
-    };
-
-    try {
-      const updatedCar = await this.service.updateById(id, carToUpdate);
-      return this.res.status(200).json(updatedCar);
-    } catch (error) {
-      this.next(error);
-    }
-  }
-
-  public async deleteById() {
-    const { id } = this.req.params;
-
-    try {
-      await this.service.deleteById(id);
-      return this.res.status(200).json({});
-    } catch (error) {
-      this.next(error);
-    }
   }
 }
+
+export default CarController;

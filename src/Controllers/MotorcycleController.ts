@@ -1,76 +1,26 @@
 import { NextFunction, Request, Response } from 'express';
+import Motorcycle from '../Domains/Motorcycle';
 import IMotorycle from '../Interfaces/IMotorcycle';
 import MotorcycleService from '../Services/MotorcycleService';
 import AbstractController from './AbstractController';
 
-export default class MotorcycleController extends AbstractController {
-  private service: MotorcycleService;
-
+class MotorcycleController extends AbstractController<IMotorycle, Motorcycle> {
   constructor(req: Request, res: Response, next: NextFunction) {
-    super(req, res, next);
-    this.service = new MotorcycleService();
+    const service = new MotorcycleService();
+    super(req, res, next, service);
   }
 
-  public async create(): Promise<Response> {
-    const newMotorcycle: IMotorycle = {
-      model: this.req.body.model,
-      color: this.req.body.color,
-      year: this.req.body.year,
-      status: this.req.body.status || false,
-      buyValue: this.req.body.buyValue,
-      category: this.req.body.category,
-      engineCapacity: this.req.body.engineCapacity,
+  createVehicle(vehicle: any): IMotorycle {
+    return {
+      model: vehicle.model,
+      color: vehicle.color,
+      year: vehicle.year,
+      status: vehicle.status || false,
+      buyValue: vehicle.buyValue,
+      category: vehicle.category,
+      engineCapacity: vehicle.engineCapacity,
     };
-
-    const createdMotorcycle = await this.service.registerVehicle(newMotorcycle);
-    return this.res.status(201).json(createdMotorcycle);
-  }
-
-  public async getAll(): Promise<Response> {
-    const allMotorcycles = await this.service.getAll();
-    return this.res.status(200).json(allMotorcycles);
-  }
-
-  public async getById() {
-    const { id } = this.req.params;
-
-    try {
-      const motorcycleById = await this.service.getById(id);
-      return this.res.status(200).json(motorcycleById);
-    } catch (error) {
-      this.next(error);
-    }
-  }
-
-  public async updateById() {
-    const { id } = this.req.params;
-
-    const motorcycleToUpdate: IMotorycle = {
-      model: this.req.body.model,
-      color: this.req.body.color,
-      year: this.req.body.year,
-      status: this.req.body.status || false,
-      buyValue: this.req.body.buyValue,
-      category: this.req.body.category,
-      engineCapacity: this.req.body.engineCapacity,
-    };
-
-    try {
-      const updatedMotorcycle = await this.service.updateById(id, motorcycleToUpdate);
-      return this.res.status(200).json(updatedMotorcycle);
-    } catch (error) {
-      this.next(error);
-    }
-  }
-
-  public async deleteById() {
-    const { id } = this.req.params;
-
-    try {
-      await this.service.deleteById(id);
-      return this.res.status(200).json({});
-    } catch (error) {
-      this.next(error);
-    }
   }
 }
+
+export default MotorcycleController;
