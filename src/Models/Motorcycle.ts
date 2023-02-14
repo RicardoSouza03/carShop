@@ -1,4 +1,4 @@
-import { Schema, UpdateWriteOpResult } from 'mongoose';
+import { Schema } from 'mongoose';
 import IMotorycle from '../Interfaces/IMotorcycle';
 import AbstractODM from './AbstractODM';
 
@@ -14,9 +14,5 @@ export default class MotorcycleODM extends AbstractODM<IMotorycle> {
       engineCapacity: { type: Number, required: true },
     });
     super(schema, 'motorcycles');
-  }
-
-  public async updateById(id: string, obj: IMotorycle): Promise<UpdateWriteOpResult> {
-    return this.model.updateOne({ _id: id }, { $set: { ...obj } });
   }
 }

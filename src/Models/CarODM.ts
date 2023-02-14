@@ -1,4 +1,4 @@
-import { Schema, UpdateWriteOpResult } from 'mongoose';
+import { Schema } from 'mongoose';
 import ICar from '../Interfaces/ICar';
 import AbstractODM from './AbstractODM';
 
@@ -14,9 +14,5 @@ export default class CarODM extends AbstractODM<ICar> {
       seatsQty: { type: Number, required: true },
     });
     super(schema, 'cars');
-  }
-
-  public async updateById(id: string, obj: ICar): Promise<UpdateWriteOpResult> {
-    return this.model.updateOne({ _id: id }, { $set: { ...obj } });
   }
 }
