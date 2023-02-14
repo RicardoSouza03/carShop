@@ -2,6 +2,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { Model } from 'mongoose';
 import { motorcycleInput, motorcycleOutPut } from '../../Mocks/NewMotorcycle.mock';
+import MotorcycleService from '../../../src/Services/MotorcycleService';
 
 describe('Se é possivel criar uma nova moto', function () {
   afterEach(function () {
