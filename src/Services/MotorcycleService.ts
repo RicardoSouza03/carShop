@@ -41,4 +41,13 @@ export default class MotorcycleService {
 
     return updatedMotorcycle;
   }
+
+  public async deleteById(id: string): Promise<void> {
+    this.motorcycleValidations.validateMotorcycleId(id);
+
+    const foundMotorcycle = await this.motorcycleODM.getById(id);
+    this.motorcycleValidations.checkMotorcycleExistence(foundMotorcycle);
+
+    await this.motorcycleODM.delete(id);
+  }
 }
