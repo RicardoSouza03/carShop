@@ -27,7 +27,7 @@ describe('Testes para deletar uma moto', function () {
       const service = new CarService();
       await service.getById('634852326b35b59438fbea2f');
     } catch (error) {
-      expect((error as Error).message).to.deep.equal('Motorcycle not found');
+      expect((error as Error).message).to.deep.equal('Car not found');
     }
   });
 
