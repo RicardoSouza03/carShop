@@ -23,4 +23,9 @@ motorcycleRoute.get(
   (req, res, next) => new MotorcycleController(req, res, next).getAll(),
 );
 
+motorcycleRoute.delete(
+  '/:id',
+  (req, res, next) => new MotorcycleController(req, res, next).deleteById(),
+);
+
 export default motorcycleRoute;
