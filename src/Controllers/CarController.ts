@@ -1,17 +1,13 @@
 import { NextFunction, Request, Response } from 'express';
 import ICar from '../Interfaces/ICar';
 import CarService from '../Services/CarService';
+import AbstractController from './AbstractController';
 
-export default class CarController {
-  private req: Request;
-  private res: Response;
-  private next: NextFunction;
+export default class CarController extends AbstractController {
   private service: CarService;
 
   constructor(req: Request, res: Response, next: NextFunction) {
-    this.req = req;
-    this.res = res;
-    this.next = next;
+    super(req, res, next);
     this.service = new CarService();
   }
 
